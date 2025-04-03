@@ -1,0 +1,6 @@
+model: "deepseek-ai/DeepSeek-R1-Distill-Llama-8B"
+tensor_parallel_size: 8
+max_num_seqs: 1
+max_model_len: 1024
+override_neuron_config: {}
+device: "neuron"

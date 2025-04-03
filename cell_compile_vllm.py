@@ -6,7 +6,6 @@ from huggingface_hub import create_repo,upload_folder,login
 
 hf_token = os.environ['HUGGINGFACE_TOKEN'].strip()
 compiled_model_name=os.environ['COMPILED_MODEL_NAME']
-#os.environ['COMPILED_MODEL_PATH']=compiled_model_name
 os.environ['NEURON_COMPILED_ARTIFACTS']=compiled_model_name
 os.environ['VLLM_NEURON_FRAMEWORK']='neuronx-distributed-inference'
 

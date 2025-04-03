@@ -20,6 +20,7 @@ print(f"Loaded dataset path: {os.environ['BOOKS_DF_DS_EXP_INTEREST']}")
 
 model_id=os.environ['MODEL_ID']
 repo_id=os.environ['COMPILED_MODEL_ID']
+max_sequence_length = int(os.environ['MAX_SEQ_LEN'])
 local_dir=snapshot_download(repo_id)
 
 t5_tokenizer = T5Tokenizer.from_pretrained(model_id)
@@ -31,7 +32,7 @@ def get_t5_embedding(text):
     Ensures inputs are always padded/truncated to the fixed 512 token size.
     """
     #print(f"Encoding text: {text[:100]}...")
-    inputs = t5_tokenizer(text, return_tensors="pt", truncation=True, padding="max_length", max_length=512)
+    inputs = t5_tokenizer(text, return_tensors="pt", truncation=True, padding="max_length", max_length=max_sequence_length)
 
     with torch.no_grad():
         output = embedding_t5_model(inputs["input_ids"], inputs["attention_mask"])

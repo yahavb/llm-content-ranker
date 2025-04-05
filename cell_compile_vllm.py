@@ -5,8 +5,8 @@ import sys
 from huggingface_hub import create_repo,upload_folder,login
 
 hf_token = os.environ['HUGGINGFACE_TOKEN'].strip()
-compiled_model_name=os.environ['COMPILED_MODEL_NAME']
-os.environ['NEURON_COMPILED_ARTIFACTS']=compiled_model_name
+compiled_model_id=os.environ['COMPILED_MODEL_ID']
+os.environ['NEURON_COMPILED_ARTIFACTS']=compiled_model_id
 os.environ['VLLM_NEURON_FRAMEWORK']='neuronx-distributed-inference'
 
 if len(sys.argv) <= 1:
@@ -34,8 +34,8 @@ for output in outputs:
   print("Generated text:", output.outputs[0].text)
 
 push_compiled_model_to_hf(
-  local_dir=compiled_model_name,
-  repo_id=compiled_model_name,
-  commit_message=f"Add NxD compiled model {compiled_model_name} for vLLM")
+  local_dir=compiled_model_id,
+  repo_id=compiled_model_id,
+  commit_message=f"Add NxD compiled model {compiled_model_id} for vLLM")
 
-print(f"✅  compilation was successful and stored in {compiled_model_name}!")
+print(f"✅  compilation was successful and stored in {compiled_model_id}!")

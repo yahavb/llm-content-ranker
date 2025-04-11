@@ -12,7 +12,7 @@ import math
 hf_token = os.environ['HUGGINGFACE_TOKEN'].strip()
 books_df_dataset=os.environ['BOOKS_DF_DS']
 books_df_dataset_expanded_interest=os.environ['BOOKS_DF_DS_EXP_INTEREST']
-repo_id=os.environ['COMPILED_MODEL_ID']
+repo_id=os.environ['MODEL_ID']
 repo_dir=repo_id
 os.environ['NEURON_COMPILED_ARTIFACTS']=repo_id
 os.environ['VLLM_NEURON_FRAMEWORK']='neuronx-distributed-inference'
@@ -20,8 +20,8 @@ os.environ['VLLM_NEURON_FRAMEWORK']='neuronx-distributed-inference'
 login(hf_token,add_to_git_credential=True)
 
 
-snapshot_download(repo_id=repo_id,local_dir=repo_dir)
-print(f"Repository '{repo_id}' downloaded to '{repo_dir}'.")
+#snapshot_download(repo_id=repo_id,local_dir=repo_dir)
+#print(f"Repository '{repo_id}' downloaded to '{repo_dir}'.")
 
 books_df = pd.read_pickle(books_df_dataset)
 print(f"Loaded the dataset {books_df_dataset}")

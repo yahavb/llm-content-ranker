@@ -7,7 +7,7 @@ from huggingface_hub import create_repo,upload_folder,login
 hf_token = os.environ['HUGGINGFACE_TOKEN'].strip()
 compiled_model_id=os.environ['COMPILED_MODEL_ID']
 os.environ['NEURON_COMPILED_ARTIFACTS']=compiled_model_id
-#os.environ['VLLM_NEURON_FRAMEWORK']='neuronx-distributed-inference'
+os.environ['VLLM_NEURON_FRAMEWORK']='neuronx-distributed-inference'
 
 if len(sys.argv) <= 1:
   print("Error: Please provide a path to a vLLM YAML configuration file.")

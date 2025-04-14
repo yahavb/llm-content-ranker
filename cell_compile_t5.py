@@ -14,6 +14,7 @@ hf_token = os.environ['HUGGINGFACE_TOKEN'].strip()
 model_id = os.environ['MODEL_ID']
 compiled_model_id = os.environ['COMPILED_MODEL_ID']
 max_sequence_length = int(os.environ['MAX_SEQ_LEN'])
+tp_degree = int(os.environ['TP_DEGREE'])
 
 def forward_wrapper():
     model = T5EncoderModel.from_pretrained(model_id, torch_dtype=torch.bfloat16)
@@ -45,7 +46,7 @@ if __name__ == '__main__':
 
     sample_tensors = (input_ids, attention_mask)
     
-    traced_model = parallel_model_trace(forward_wrapper,sample_tensors)
+    traced_model = parallel_model_trace(forward_wrapper,sample_tensors,tp_degree=tp_degree)
     
     parallel_model_save(traced_model, compiled_model_id)
     print(f"Model compiled successfully! Uploading to {compiled_model_id}")

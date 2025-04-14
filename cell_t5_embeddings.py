@@ -21,7 +21,7 @@ print(f"Loaded dataset path: {os.environ['BOOKS_DF_DS_EXP_INTEREST']}")
 model_id=os.environ['MODEL_ID']
 repo_id=os.environ['COMPILED_MODEL_ID']
 max_sequence_length = int(os.environ['MAX_SEQ_LEN'])
-local_dir=snapshot_download(repo_id)
+local_dir=snapshot_download(repo_id,allow_patterns="tp_*.pt")
 
 t5_tokenizer = T5Tokenizer.from_pretrained(model_id)
 embedding_t5_model = parallel_model_load(local_dir)

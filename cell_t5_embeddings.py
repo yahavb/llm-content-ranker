@@ -1,6 +1,3 @@
-# =========================
-#  cell_t5_embeddings.py: Generate T5 Embeddings & FAISS Index
-# =========================
 import os
 import torch
 import faiss
